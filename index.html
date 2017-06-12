@@ -9,8 +9,8 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  
-  <script>
+  <script src="js/enquire.min.js"></script>
+  <script type="text/javascript">
 	
 	
 		function send() {
@@ -18,10 +18,9 @@
 			window.open("mailto:conmolloy@gmail.com" + "?subject=" + document.getElementById('subject').value + "&body=" + document.getElementById('message').value);
 		  }, 320);
 		}
-
-	
 	
   </script>
+
 </head>
 <body>
   <nav class="white" role="navigation">
@@ -73,7 +72,7 @@
         <div class="col s12 m4">
           <div class="icon-block">
             <h3 class="teal-text">About me</h3>
-            <p align="justify" class="light">A 22 year old Computer Science graduate from University College Cork. I am an energetic, ambitious person who has developed a responsible approach to any task that I undertake. 
+            <p  class="light">A 22 year old Computer Science graduate from University College Cork. I am an energetic, ambitious person who has developed a responsible approach to any task that I undertake. 
 							I have strong technical skills as well as excellent interpersonal skills. I wish to continue my career by applying and developing my skills and knowledge within a dynamic and fast-paced company.
 			</p>
 			<a href="CV.pdf" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Download CV <i class="material-icons right">system_update_alt</i> </a>
@@ -137,7 +136,7 @@
   </div>-->
   
   
-  <div class="parallax-container">
+  <div id="parralaxone" class="parallax-container">
   <div class="container">
     <div class="section">
 
@@ -301,7 +300,7 @@
 </div>
 	
 
-<div class="parallax-container">
+<div id="parralaxtwo" class="parallax-container">
 	<div class="container">
 		<div class="section">
 
@@ -408,6 +407,51 @@
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
+    <script type="text/javascript">
+
+		function adjustWindow(){
+		
+     
+			// Get window size
+			winH = $(window).height();
+			winW = $(window).width();
+			 
+			// Keep minimum height 550
+			if(winH <= 550) {
+				winH = 550;
+			}
+			var x = document.getElementsByClassName("parallax"); 
+			// Init Skrollr for 768 and up
+			if( winW <= 1000) {
+		 
+				// Init Skrollr
+				document.getElementById("index-banner").classList.remove("parallax-container");
+				document.getElementById("parralaxone").classList.remove("parallax-container");
+				document.getElementById("parralaxtwo").classList.remove("parallax-container");
+				
+				
+				x[0].style.display = 'none';
+				x[1].style.display = 'none';
+				x[2].style.display = 'none';
+			} 
+			
+		 }
+		 function initAdjustWindow() {
+			return {
+				match : function() {
+					adjustWindow();
+				},
+				unmatch : function() {
+					adjustWindow();
+				}
+			};
+		}
+		enquire.register("screen and (min-width : 768px)", initAdjustWindow(), false);
+
+  
+  
+  
+  </script>
 
   </body>
 </html>
